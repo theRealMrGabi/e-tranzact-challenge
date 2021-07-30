@@ -1,0 +1,46 @@
+@import "./color.scss";
+@import "./mixins.scss";
+
+.inputContainer {
+	@include flex(column, null, null);
+	margin-bottom: 1rem;
+	text-transform: capitalize;
+	input[type="search"]::-webkit-search-decoration,
+	input[type="search"]::-webkit-search-cancel-button,
+	input[type="search"]::-webkit-search-results-button,
+	input[type="search"]::-webkit-search-results-decoration {
+		display: none;
+	}
+
+	.label {
+		font-style: normal;
+		font-weight: 550;
+		font-size: 1rem;
+		line-height: 2rem;
+		color: $primary-black;
+		margin-bottom: 0.2rem;
+
+		.requiredLabel {
+			color: #bc1f27;
+		}
+	}
+
+	.input {
+		border: 1px solid $primary-gray;
+		background-color: $primary-white;
+		width: 20rem;
+		height: 2.5rem;
+		color: $primary-black;
+		outline: none;
+		box-sizing: border-box;
+		border-radius: 0.5rem;
+		padding: 1rem;
+		font-size: 1rem;
+		font-weight: 400;
+		caret-color: $primary;
+
+		&::placeholder {
+			caret-color: $primary-gray;
+		}
+	}
+}
