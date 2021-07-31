@@ -1,0 +1,86 @@
+.homeCont {
+	.midSection {
+		.description {
+			font-size: 0.9375rem;
+			line-height: 1.25rem;
+		}
+	}
+
+	.card {
+		width: 200px;
+		height: auto;
+		background: $primary-white;
+		border: 1px solid $primary-gray;
+		box-sizing: border-box;
+		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+		border-radius: 5px;
+		padding: 0.3rem;
+		margin-top: 1rem;
+		cursor: pointer;
+
+		img {
+			height: 80%;
+		}
+	}
+
+	.card-name {
+		font-weight: 300;
+		font-size: 0.75rem;
+		line-height: 1.5rem;
+	}
+
+	.card-price {
+		font-weight: 500;
+		font-size: 1.125rem;
+		line-height: 1.25rem;
+		color: $primary-black;
+	}
+
+	.hotCont {
+		.hotTitle {
+			color: $primary-white;
+			font-weight: bold;
+			font-size: 1.125rem;
+			line-height: 2.625rem;
+			padding-left: 2rem;
+			height: 2.1875rem;
+			background: #bc1f27;
+			border-radius: 10px 0px 0px 0px;
+			margin-bottom: 2rem;
+		}
+
+		.drink-cont {
+			display: flex;
+			justify-content: space-between;
+			.drink-card {
+				@extend .card;
+
+				.drink-name {
+					@extend .card-name;
+				}
+				.price {
+					@extend .card-price;
+				}
+			}
+		}
+	}
+
+	.product-catalog {
+		.product-cont {
+			display: grid;
+			// grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+			grid-template-columns: 1fr 1fr 1fr 1fr;
+			gap: 1.5rem;
+			.product-card {
+				@extend .card;
+
+				.product-name {
+					@extend .card-name;
+				}
+				.price {
+					@extend .card-price;
+				}
+			}
+		}
+	}
+}
