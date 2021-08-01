@@ -21,6 +21,7 @@
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "react-select": "^4.3.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "tailwindcss": "^2.0.2",
@@ -68,6 +69,7 @@
   "devDependencies": {
     "@types/react-redux": "^7.1.16",
     "@types/react-router-dom": "^5.1.7",
+    "@types/react-select": "^4.0.17",
     "@types/redux": "^3.6.0",
     "@types/yup": "^0.29.11",
     "husky": "^5.1.3",

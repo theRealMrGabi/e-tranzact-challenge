@@ -11,14 +11,14 @@ export const GetAllProducts = () => {
 		dispatch({ type: types.GET_ALL_PRODUCTS.REQUEST }),
 		axios.request(
 			"GET",
-			`product/all?limit=8&page=${page}`,
+			`product/all?limit=12&page=${page}`,
 			(res: any) => {
 				const payload = {
 					products: res?.data,
 					totalItems: res?.totalElements,
 				};
 				dispatch({ type: types.GET_ALL_PRODUCTS.SUCCESS, payload });
-				successCallback?.();
+				successCallback?.(res?.data);
 			},
 			(err: any) => {
 				dispatch({ type: types.GET_ALL_PRODUCTS.FAILURE });

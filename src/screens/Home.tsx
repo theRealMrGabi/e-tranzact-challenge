@@ -1,13 +1,6 @@
 import { FC, useState, useEffect } from "react";
-import {
-	Hero,
-	Schweppes,
-	FearlessEnergy,
-	Sprite,
-	Filter,
-	DownArrow,
-} from "assets";
-import { Pagination } from "components";
+import { Hero, Schweppes, FearlessEnergy, Sprite, Filter } from "assets";
+import { Pagination, Select } from "components";
 import { GetAllProducts } from "redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -18,17 +11,58 @@ const Home: FC = () => {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const { products, totalItems } = useSelector((state: any) => state.product);
 
-	const [currPage, setCurrPage] = useState(1);
+	const [currPage, setCurrPage] = useState<number>(1);
+	const [productData, setProductData] = useState<any>([]);
+	const [filterValue, setfilterValue] = useState<string>("");
 
 	const handlePagination = (page: number) => {
 		setCurrPage(page);
-		dispatch(getProducts(page));
+		dispatch(
+			getProducts(page, (res: any) => {
+				setProductData(res);
+			})
+		);
 	};
 
 	useEffect(() => {
-		dispatch(getProducts(1));
+		dispatch(
+			getProducts(1, (res: any) => {
+				setProductData(res);
+			})
+		);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	const filter = (filterKeyword: string) => {
+		if (filterKeyword) {
+			const sort = productData?.sort((a: any, b: any) => {
+				if (typeof a[filterKeyword] === "string") {
+					let aVal = a[filterKeyword].toLowerCase();
+					let bVal = b[filterKeyword].toLowerCase();
+					return aVal === bVal ? 0 : aVal > bVal ? 1 : -1;
+				} else if (typeof a[filterKeyword] === "number") {
+					return a[filterKeyword] > b[filterKeyword] ? 1 : -1;
+				} else {
+					return a[filterKeyword] - b[filterKeyword];
+				}
+			});
+			return setProductData(sort);
+		}
+		setProductData(products);
+	};
+
+	useEffect(() => {
+		filter(filterValue);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [filterValue, productData]);
+
+	const selectOptions = [
+		{ value: "bestSeller", label: "Best Seller" },
+		{ value: "productDescription", label: "Description" },
+		{ value: "productName", label: "Name" },
+		{ value: "productPrice", label: "Price" },
+		{ value: "_id", label: "id" },
+	];
 
 	return (
 		<div className="homeCont pt-4 w-full">
@@ -92,9 +126,17 @@ const Home: FC = () => {
 								<img src={Filter} className="w-4 h-4 mr-1" alt="filter" />
 								<div className="font-light">Sort</div>
 							</div>
-							<div className="flex items-center cursor-pointer">
-								<div className="pr-2">Date</div>
-								<img src={DownArrow} className="h-3 w-3" alt="select" />
+							<div className="flex items-center cursor-pointer selectopt">
+								<Select
+									name="country"
+									options={selectOptions}
+									className="selectStat"
+									placeholder={"Filter" || { filterValue }}
+									onChange={(e: any) => {
+										setfilterValue(e.value);
+										filter(e.value);
+									}}
+								/>
 							</div>
 						</div>
 					</div>
@@ -102,11 +144,13 @@ const Home: FC = () => {
 				</div>
 
 				<div className="product-cont">
-					{products?.map((item: any) => (
+					{productData?.map((item: any) => (
 						<div className="product-card" key={item._id}>
 							<img src={item.productImageUrl} alt={item.productName} />
 							<div className="product-name">{item.productName}</div>
-							<div className="price">N{item.productPrice}</div>
+							<div className="price">
+								N{new Intl.NumberFormat().format(item.productPrice)}
+							</div>
 						</div>
 					))}
 				</div>
@@ -121,7 +165,7 @@ const Home: FC = () => {
 					}}
 					totalCount={37}
 					currentPage={currPage}
-					pageSize={8}
+					pageSize={12}
 					className="my-12 w-full flex justify-center"
 				/>
 			</div>
