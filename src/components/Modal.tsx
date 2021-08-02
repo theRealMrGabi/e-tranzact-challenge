@@ -1,12 +1,11 @@
 import { useState, useEffect, FC } from "react";
-import styles from "./Modal.module.scss";
 
 interface ModalProps {
-	children: JSX.Element;
+	children: React.ReactNode;
 	visible: boolean;
 	onClose: () => void;
-	className: string;
-	cancelPropagation: boolean;
+	className?: string;
+	cancelPropagation?: boolean;
 }
 
 export const Modal: FC<ModalProps> = ({
@@ -34,7 +33,7 @@ export const Modal: FC<ModalProps> = ({
 			`}
 			onClick={() => (cancelPropagation ? null : onClose && onClose())}
 		>
-			<div className={styles.container} onClick={(e) => e.stopPropagation()}>
+			<div className="modal-container" onClick={(e) => e.stopPropagation()}>
 				{visible && <div className="modalContent">{children}</div>}
 			</div>
 		</div>

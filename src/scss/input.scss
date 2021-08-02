@@ -1,6 +1,19 @@
 @import "./color.scss";
 @import "./mixins.scss";
 
+.labelStyle {
+	font-style: normal;
+	font-weight: 550;
+	font-size: 1rem;
+	line-height: 2rem;
+	color: $primary-black;
+	margin-bottom: 0.2rem;
+
+	.requiredLabel {
+		color: #bc1f27;
+	}
+}
+
 .inputContainer {
 	@include flex(column, null, null);
 	margin-bottom: 1rem;
@@ -13,22 +26,24 @@
 	}
 
 	.label {
-		font-style: normal;
-		font-weight: 550;
-		font-size: 1rem;
-		line-height: 2rem;
-		color: $primary-black;
-		margin-bottom: 0.2rem;
+		// font-style: normal;
+		// font-weight: 550;
+		// font-size: 1rem;
+		// line-height: 2rem;
+		// color: $primary-black;
+		// margin-bottom: 0.2rem;
 
-		.requiredLabel {
-			color: #bc1f27;
-		}
+		// .requiredLabel {
+		// 	color: #bc1f27;
+		// }
+		@extend .labelStyle;
 	}
 
 	.input {
 		border: 1px solid $primary-gray;
 		background-color: $primary-white;
-		width: 20rem;
+		// width: 20rem;
+		width: auto;
 		height: 2.5rem;
 		color: $primary-black;
 		outline: none;

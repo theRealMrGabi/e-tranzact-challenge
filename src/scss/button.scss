@@ -2,15 +2,15 @@
 @import "./mixins.scss";
 
 .buttonContainer {
-	margin: 3rem;
-	width: 10rem;
+	padding: 0 1.5rem;
+	width: auto;
 	height: 3rem;
 	background-color: $primary;
 	border-radius: 0.5rem;
 	cursor: pointer;
 	color: $primary-white;
 	border: none;
-	font-size: 1rem;
+	font-size: 0.9rem;
 	font-weight: 500;
 
 	&:hover,

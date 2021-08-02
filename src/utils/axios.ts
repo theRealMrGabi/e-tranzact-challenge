@@ -16,10 +16,7 @@ class ApiService {
 	private service: AxiosInstance;
 	hide: any;
 	constructor() {
-		const baseURL =
-			window.location.hostname === "localhost"
-				? `https://jsonplaceholder.typicode.com/`
-				: `https://enter-your-production-api-baseURL/`;
+		const baseURL = `https://etranzact-test-api.herokuapp.com/api/etz/`;
 
 		const service = axios.create({
 			baseURL,
@@ -47,8 +44,7 @@ class ApiService {
 
 	handleSuccess(response: AxiosResponse) {
 		if (that.hide) that.hide && that.hide();
-		if (response.data.message) showToast(response.data.message, "success");
-
+		if (response.data.message) showToast(response.data.message, "info");
 		return response;
 	}
 
@@ -69,7 +65,6 @@ class ApiService {
 			if (status && status === 401) {
 				local.clear();
 				session.clear();
-				window.location.href = "/login";
 			}
 		}
 
