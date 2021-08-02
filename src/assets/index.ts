@@ -4,6 +4,7 @@ import FearlessEnergy from "./fearless-energy.svg";
 import Schweppes from "./schweppes.svg";
 import Sprite from "./sprite.svg";
 import Filter from "./filter.svg";
+import Cancel from "./cancel.svg";
 import DownArrow from "./down-arrow.svg";
 
 export {
@@ -14,4 +15,5 @@ export {
 	Sprite,
 	Filter,
 	DownArrow,
+	Cancel,
 };

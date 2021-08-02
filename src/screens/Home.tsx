@@ -1,6 +1,6 @@
 import { FC, useState, useEffect } from "react";
 import { Hero, Schweppes, FearlessEnergy, Sprite, Filter } from "assets";
-import { Pagination, Select } from "components";
+import { Loader, Pagination, Select } from "components";
 import { GetAllProducts } from "redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -9,7 +9,9 @@ const Home: FC = () => {
 	const getProducts = GetAllProducts();
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const { products, totalItems } = useSelector((state: any) => state.product);
+	const { products, totalItems, loading } = useSelector(
+		(state: any) => state.product
+	);
 
 	const [currPage, setCurrPage] = useState<number>(1);
 	const [productData, setProductData] = useState<any>([]);
@@ -25,11 +27,11 @@ const Home: FC = () => {
 	};
 
 	useEffect(() => {
-		dispatch(
-			getProducts(1, (res: any) => {
-				setProductData(res);
-			})
-		);
+		// dispatch(
+		// 	getProducts(1, (res: any) => {
+		// 		setProductData(res);
+		// 	})
+		// );
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
@@ -144,15 +146,21 @@ const Home: FC = () => {
 				</div>
 
 				<div className="product-cont">
-					{productData?.map((item: any) => (
-						<div className="product-card" key={item._id}>
-							<img src={item.productImageUrl} alt={item.productName} />
-							<div className="product-name">{item.productName}</div>
-							<div className="price">
-								N{new Intl.NumberFormat().format(item.productPrice)}
-							</div>
+					{loading ? (
+						<div className="loading-container">
+							<Loader />
 						</div>
-					))}
+					) : (
+						productData?.map((item: any) => (
+							<div className="product-card" key={item._id}>
+								<img src={item.productImageUrl} alt={item.productName} />
+								<div className="product-name">{item.productName}</div>
+								<div className="price">
+									N{new Intl.NumberFormat().format(item.productPrice)}
+								</div>
+							</div>
+						))
+					)}
 				</div>
 			</div>
 

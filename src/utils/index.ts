@@ -1,5 +1,4 @@
 import cogoToast from "cogo-toast";
-import { local, session } from "./storage";
 
 export const generateActions = (action: string) => {
 	action = action.toUpperCase();
@@ -18,23 +17,8 @@ export const _isAnEmpytyObject = (obj: any) => {
 };
 
 export const getToken = () => {
-	let token = "";
-	const local_token = local.getObject("token").access;
-	token =
-		(_isAnEmpytyObject(local_token) ? "" : local_token) || session.get("token");
+	const token = localStorage.getItem("token");
 	return token;
-};
-
-export const getUser = () => {
-	const local_user = local.getObject("user");
-	const user = _isAnEmpytyObject(local_user) ? null : local_user;
-	return user;
-};
-
-export const isUserLoggedIn = () => {
-	const user = getUser();
-	if (!_isAnEmpytyObject(user)) return true;
-	return false;
 };
 
 export const showToast = (message: string, type?: string) => {

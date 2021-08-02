@@ -65,7 +65,6 @@ class ApiService {
 			if (status && status === 401) {
 				local.clear();
 				session.clear();
-				window.location.href = "/login";
 			}
 		}
 

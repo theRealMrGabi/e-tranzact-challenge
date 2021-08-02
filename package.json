@@ -11,6 +11,7 @@
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
     "@types/redux-thunk": "^2.1.0",
+    "@uiw/react-radio": "^4.9.4",
     "autoprefixer": "^10.2.3",
     "axios": "^0.21.1",
     "cogo-toast": "^4.2.3",
