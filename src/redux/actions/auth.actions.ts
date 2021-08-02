@@ -2,7 +2,6 @@ import * as types from "./types";
 import axios from "utils/axios";
 import { showToast } from "utils";
 import { Dispatch } from "redux";
-import { useHistory } from "react-router-dom";
 
 export const SignUp = () => {
 	return (data: any, successCallback?: any, errorCallback?: any) => (
