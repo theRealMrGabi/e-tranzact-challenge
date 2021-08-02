@@ -1,9 +1,10 @@
 import { FC, Suspense, lazy } from "react";
 import { Route, Switch } from "react-router-dom";
-import { GeneralLayout, Loader } from "components";
+import { GeneralLayout, Loader, AuthLayout } from "components";
 
 /** Screens are being lazy loaded for performance optimization */
 const Home = lazy(() => import("screens/Home"));
+const ProductPage = lazy(() => import("screens/Products"));
 
 const App: FC = () => {
 	return (
@@ -16,6 +17,15 @@ const App: FC = () => {
 						<GeneralLayout {...props}>
 							<Home />
 						</GeneralLayout>
+					)}
+				/>
+				<Route
+					path="/products"
+					exact
+					render={(props) => (
+						<AuthLayout {...props}>
+							<ProductPage />
+						</AuthLayout>
 					)}
 				/>
 			</Switch>

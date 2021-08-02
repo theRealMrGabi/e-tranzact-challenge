@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Products } from "components";
 
-const Home: FC = () => {
+const ProductPage: FC = () => {
 	return <Products />;
 };
 
-export default Home;
+export default ProductPage;

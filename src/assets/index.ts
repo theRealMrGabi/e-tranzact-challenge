@@ -5,6 +5,7 @@ import Schweppes from "./schweppes.svg";
 import Sprite from "./sprite.svg";
 import Filter from "./filter.svg";
 import Cancel from "./cancel.svg";
+import HumanIcon from "./human-icon.svg";
 import DownArrow from "./down-arrow.svg";
 
 export {
@@ -16,4 +17,5 @@ export {
 	Filter,
 	DownArrow,
 	Cancel,
+	HumanIcon,
 };

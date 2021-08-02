@@ -4,11 +4,12 @@ import { FormHeader } from "./FormHeader";
 import { useState } from "react";
 import { useFormik } from "formik";
 import { SignUpSchema } from "validators";
-import { SignUp } from "redux/actions";
+import { SignUp, CloseModal } from "redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 
 export const RegisterForm = () => {
 	const signUp = SignUp();
+	const closeModal = CloseModal();
 	const dispatch = useDispatch();
 
 	const { loading } = useSelector((state: any) => state.auth);
@@ -16,7 +17,11 @@ export const RegisterForm = () => {
 	const [gender, setGender] = useState("");
 
 	const handleSubmit = () => {
-		dispatch(signUp(formik.values));
+		dispatch(
+			signUp(formik.values, () => {
+				dispatch(closeModal());
+			})
+		);
 	};
 
 	const initialValues = {

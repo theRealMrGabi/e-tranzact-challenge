@@ -3,10 +3,14 @@ import { FormHeader } from "./FormHeader";
 import { useFormik } from "formik";
 import { useSelector, useDispatch } from "react-redux";
 import { LoginSchema } from "validators";
-import { Login } from "redux/actions";
+import { Login, CloseModal } from "redux/actions";
+import { useHistory } from "react-router-dom";
 
 export const SignInForm = () => {
 	const dispatch = useDispatch();
+	const history = useHistory();
+	const closeModal = CloseModal();
+
 	const login = Login();
 
 	const { loading } = useSelector((state: any) => state.auth);
@@ -17,7 +21,13 @@ export const SignInForm = () => {
 	};
 
 	const handleSubmit = () => {
-		dispatch(login(formik.values));
+		dispatch(
+			login(formik.values, () => {
+				/**Close modal and Redirect users to products screen when login is successful */
+				dispatch(closeModal());
+				history.push("/products");
+			})
+		);
 	};
 
 	const formik = useFormik({
